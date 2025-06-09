@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+  <title>Dynamic Matplotlib Graph</title>
+  <style>
+    body {
+    background-color:#f0f0f0; /* Example: light gray */
+  }
+   h1 {
+    color: #2c3e50;          /* text color */
+    font-size: 20px;         /* font size */
+    font-family: 'Arial', sans-serif; /* font */
+    text-align: left;      /* center align */
+    text-transform: uppercase; /* uppercase letters */
+    letter-spacing: 2px;     /* space between letters */
+  }
+  </style>
+</head>
+
+
+
+<body>
+  <h1>Compare Confrences</h1>
+  <script>
+      function toggleSelectAll_con(checked) {
+          const checkboxes = document.querySelectorAll('input[name="category"]');
+          checkboxes.forEach(cb => cb.checked = checked);
+      }
+    </script>
+    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+      <div style="width: 20%; position: flex; top: 10%; "> 
+        <button type="button" onclick="toggleSelectAll_con(true)">Select All</button>
+        <button type="button" onclick="toggleSelectAll_con(false)">Deselect All</button>
+      </div>
+      <div style="width: 20%; margin-top: 5%; "> 
+        
+        <form method="post">
+          {% for category in categories %}
+            <label>
+              <input type="checkbox" name="category" value="{{ category }}" 
+                    {% if category in selected %}checked{% endif %}>
+              {{ category }}
+            </label><br>
+          {% endfor %}
+          {% for event in selected_events %}
+            <input type="hidden" name="hidden_event" value="{{ event }}">
+          {% endfor %}
+          <input type="hidden" name="hidden_event_number" value="{{ event_num }}">
+          
+
+          <p>Top __ Performances to Average:</p>
+        <input type="number" name="number" value="{{ number }}" min="1" max="25"><br><br>
+
+        <button type="submit" name="form_id" value="conferences">Update Conferences Graph</button>
+
+        </form>
+
+      </div>
+
+      
+      <div style="top: -7%;width: 80%;">
+        <img src="/plot.png?{% for c in selected %}category={{ c }}&{% endfor %}number={{ number }}"style="width: 100%; height: auto;" alt="Graph">
+      </div>
+</div>
+<h2>Compare Events</h2>
+  <script>
+      function toggleSelectAll_event(checked) {
+          const checkboxes = document.querySelectorAll('input[name="events"]');
+          checkboxes.forEach(cb => cb.checked = checked);
+      }
+    </script>
+    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+      <div style="width: 20%; position: flex; top: 130%; "> 
+        <button type="button" onclick="toggleSelectAll_event(true)">Select All</button>
+        <button type="button" onclick="toggleSelectAll_event(false)">Deselect All</button>
+      </div>
+      <div style="display: flex;flex-wrap: wrap; gap: 2%;width: 20%; margin-top: 5%; "> 
+        
+        <form method="post">
+          {% for event in events %}
+            <label>
+              <input type="checkbox" name="events" value="{{ event }}" 
+                    {% if event in selected_events %}checked{% endif %}>
+              {{ event }}
+            </label><br>
+          {% endfor %}
+
+          {% for category in selected %}
+            <input type="hidden" name="hidden_category" value="{{ category }}">
+          {% endfor %}
+          <input type="hidden" name="hidden_number" value="{{ number }}">
+          
+
+          <p>Top __ Performances to Average:</p>
+        <input type="number" name="event_num" value="{{ event_num }}" min="1" max="25"><br><br>
+
+        <button type="submit" name="form_id" value="events">Update Events Graph</button>
+        </form>
+
+      </div>
+
+      
+      <div style="width: 80%;">
+        <img src="/plot_events.png?{% for c in selected_events %}events={{ c }}&{% endfor %}number={{ event_num }}"style="width: 100%; height: auto;" alt="Graph">
+      </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+ 
+
