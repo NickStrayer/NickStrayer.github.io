@@ -69,7 +69,7 @@ function renderCheckboxes(name, items, containerId) {
   items.forEach(item => {
     const label = document.createElement('label');
     label.innerHTML = `
-      <input type="checkbox" name="${name}" value="${item}" checked> ${item}
+      <input type="checkbox" name="${name}" value="${item}"> ${item}
     `;
     container.appendChild(label);
     container.appendChild(document.createElement('br'));
