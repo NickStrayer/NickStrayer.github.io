@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Graph Comparison</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- PapaParse (CSV parsing) -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+
+  <h1>Compare Conferences</h1>
+<div class="control-panel">
+  <div class="checkbox-group">
+    <div class="button-group">
+      <button type="button" onclick="toggleAll('category', true)">Select All</button>
+      <button type="button" onclick="toggleAll('category', false)">Deselect All</button>
+    </div>
+    <div id="category-container"></div>
+  </div>
+  <div class="options">
+    <label>Top <input type="number" id="conf-number" value="10" min="1" max="25"></label>
+    <button type="button" onclick="updateConfPlot()">Update</button>
+  </div>
+</div>
+
+<div id="conferencePlot" class="chart"></div>
+
+<h2>Compare Events</h2>
+<div class="control-panel">
+  <div class="checkbox-group">
+    <div class="button-group">
+      <button type="button" onclick="toggleAll('event', true)">Select All</button>
+      <button type="button" onclick="toggleAll('event', false)">Deselect All</button>
+    </div>
+    <div id="event-container"></div>
+  </div>
+  <div class="options">
+    <label>Top <input type="number" id="event-number" value="10" min="1" max="25"></label>
+    <label>Event to Sort by: <input type="text" id="sort-event" placeholder="e.g. 100m" /></label>
+    <button type="button" onclick="updateEventPlot()">Update</button>
+  </div>
+</div>
+
+<div id="eventPlot" class="chart"></div>
+
+<script src="main.js"></script>
