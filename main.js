@@ -118,10 +118,11 @@ function updateConfPlot() {
   }
 
   Plotly.newPlot('conferencePlot', traces, {
-    title: `Average Top ${topN} Scores per Event by Conference`,
-    xaxis: { title: 'Event' },
-    yaxis: { title: 'Average Score' }
-  });
+  title: `Average Top ${topN} Scores per Event by Conference`,
+  xaxis: { title: 'Event' },
+  yaxis: { title: 'Average Score' },
+  dragmode: false
+});
 }
 
 
@@ -134,10 +135,10 @@ if (isNaN(n) || n <= 0) {
   return;
 }
 
-const sortEventKey = document.getElementById('sort-event').value; // Event key to sort by
+let sortEventKey = document.getElementById('sort-event').value; // Event key to sort by
 if (!sortEventKey || !data[sortEventKey]) {
-  alert("Please enter a valid event to sort by.");
-  return;
+    const randomIndex = Math.floor(Math.random() * selectedEvents.length);
+    sortEventKey = selectedEvents[randomIndex];
 }
 
 const conSet = new Set();
@@ -202,5 +203,7 @@ for (const eventKey of selectedEvents) {
 Plotly.newPlot('eventPlot', traces, {
   title: `Top ${n} Values per Event per Confrence`,
   xaxis: { title: 'Conference' },
-  yaxis: { title: 'Average Score' }
+  yaxis: { title: 'Average Score' },
+  dragmode: false
+  
 })};
