@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dynamic Graph Comparison</title>
+  <title>NCAA Track Comparisons</title>
+  <h1>NCAA Track Comparisons</h1>
+  <p>All of the following comparisons make use of world athletics scores. These are a ranking system designed by World Athletics to provide a single comparable number for every performance across track and field events. These scores generally scale from 1 to 1400 with a higher score representing a more impressive performance.</p>
   <link rel="stylesheet" href="styles.css">
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -12,6 +14,7 @@
 <body>
 
   <h1>Compare Conferences</h1>
+  <p> Check the boxes below to have that conference's average score for all events be shown as a line on the graph. Multiple boxes can be selected to compare conferences across events. The number entered will be used to select the amount of performances accounted for in the average. Press UPDATE to display the graph.</p>
 <div class="control-panel">
   <div class="checkbox-group">
     <div class="button-group">
@@ -29,6 +32,7 @@
 <div id="conferencePlot" class="chart"></div>
 
 <h2>Compare Events</h2>
+<p> Check the boxes below to have the events average score for all conferences be shown as a line on the graph. Multiple boxes can be selected to compare events across the entire NCAA. The number entered will be used to select the amount of performances accounted for in the average, and the event entered will sort the conferences by that events score in descending order. Press UPDATE to display the graph.</p>
 <div class="control-panel">
   <div class="checkbox-group">
     <div class="button-group">
